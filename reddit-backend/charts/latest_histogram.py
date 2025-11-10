@@ -35,7 +35,7 @@ def histogram_sentiment(brands: List[str]) -> str:
 
     for brand in brands:
         try:
-            df = fetch_keyword_search(reddit, ["sneakers", "nike", "adidas", "sneaker talk", 'Jordan'], [brand], time_filter="month", limit_per_sub=50)
+            df = fetch_keyword_search(reddit, ["all"], [brand], time_filter="month", limit_per_sub=50)
         except Exception as e:
             print(f"Error fetching reddit data for {brand}: {e}")
             df = pd.DataFrame()
