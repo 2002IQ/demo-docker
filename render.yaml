@@ -25,7 +25,7 @@ services:
       - key: YOUTUBE_KEY
         sync: false  # You'll need to add this in Render dashboard
       - key: ML_URL
-        value: http://ml-service:8080
+        value: https://ml-service-7kfl.onrender.com
 
   # Reddit Backend API
   - type: web
@@ -45,7 +45,7 @@ services:
       - key: REDDIT_APP_NAME
         sync: false  # You'll need to add this in Render dashboard
       - key: ML_URL
-        value: http://ml-service:8080
+        value: https://ml-service-7kfl.onrender.com
 
   # Frontend - Streamlit Dashboard
   - type: web
@@ -61,7 +61,8 @@ services:
       - key: HOST
         value: 0.0.0.0
       - key: YT_URL
-        value: http://yt-backend:8080/charts/multibrand
+        value: https://yt-backend-a88b.onrender.com/charts/multibrand
       - key: REDDIT_URL
-        value: http://reddit-backend:8080/charts/multibrand
+        value: https://reddit-backend-gztk.onrender.com/charts/multibrand
+
 
