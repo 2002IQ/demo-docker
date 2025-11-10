@@ -1,0 +1,67 @@
+services:
+  # ML Service - Sentiment Analysis API
+  - type: web
+    name: ml-service
+    runtime: docker
+    dockerfilePath: ./ml/Dockerfile
+    dockerContext: ./ml
+    plan: free
+    healthCheckPath: /docs
+    envVars:
+      - key: PORT
+        value: 8080
+
+  # YouTube Backend API
+  - type: web
+    name: yt-backend
+    runtime: docker
+    dockerfilePath: ./yt-backend/Dockerfile
+    dockerContext: ./yt-backend
+    plan: free
+    healthCheckPath: /docs
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: YOUTUBE_KEY
+        sync: false  # You'll need to add this in Render dashboard
+      - key: ML_URL
+        value: http://ml-service:8080
+
+  # Reddit Backend API
+  - type: web
+    name: reddit-backend
+    runtime: docker
+    dockerfilePath: ./reddit-backend/Dockerfile
+    dockerContext: ./reddit-backend
+    plan: free
+    healthCheckPath: /docs
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: REDDIT_APP_ID
+        sync: false  # You'll need to add this in Render dashboard
+      - key: REDDIT_APP_SECRET
+        sync: false  # You'll need to add this in Render dashboard
+      - key: REDDIT_APP_NAME
+        sync: false  # You'll need to add this in Render dashboard
+      - key: ML_URL
+        value: http://ml-service:8080
+
+  # Frontend - Streamlit Dashboard
+  - type: web
+    name: frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    plan: free
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: PORT
+        value: 8501
+      - key: HOST
+        value: 0.0.0.0
+      - key: YT_URL
+        value: http://yt-backend:8080/charts/multibrand
+      - key: REDDIT_URL
+        value: http://reddit-backend:8080/charts/multibrand
+
