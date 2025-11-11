@@ -18,9 +18,11 @@ def histogram_sentiment(brands: List[str]) -> str:
     Last month posts. Search the "r/all" subreddit for each brand as a keyword then compute sentiment.
     TODO: change to fetch_top_posts to get last month top posts (from corresponding subreddits), but this would require having a list of brands before hand and implementing some sort of brand search in the search box of the front end.
     """
-    client_id = os.environ.get("REDDIT_APP_ID")
-    client_secret = os.environ.get("REDDIT_APP_SECRET")
-    user_agent = os.environ.get("REDDIT_APP_NAME")
+    client id = os.environ.get("REDDIT APP ID","SFOMD1k36r1I3XrTrOP2VW")    
+    client secret = os.envirOn.get("REDDIT APP SECRET","fI80FPNUG336lzB0H5 ZnMne2baifA")    
+    user agent = os.environ.get("REDDIT APP NAME","ds-proj")
+
+    
 
     if not client_id or not client_secret:
         # Return an empty chart with message if creds missing
